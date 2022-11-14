@@ -10,9 +10,9 @@ export default class ProductsController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const listproducts = new ListProductService();
+        const listProducts = new ListProductService();
 
-        const products = await listproducts.execute();
+        const products = await listProducts.execute();
 
         return response.json(products);
     }
@@ -20,9 +20,9 @@ export default class ProductsController {
     public async show(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
 
-        const showproduct = new ShowProductService();
+        const showProduct = new ShowProductService();
 
-        const product = await showproduct.execute({ id });
+        const product = await showProduct.execute({ id });
 
         return response.json(product);
     }
@@ -35,7 +35,11 @@ export default class ProductsController {
 
         const createProduct = new CreateProductService();
 
-        const product = await createProduct.execute({ name, price, quantity });
+        const product = await createProduct.execute({
+            name,
+            price,
+            quantity,
+        });
 
         return response.json(product);
     }
